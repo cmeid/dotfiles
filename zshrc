@@ -51,7 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/Users/cmeid/perl5/perlbrew/bin:/opt/local/bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/opt/local/bin:/opt/local/sbin:/opt/scalix:/bin/opt/local/bin:/opt/local/sbin:/usr/X11R6/bin:/sbin:/usr/sbin"
+export PATH="/Users/cmeid/perl5/perlbrew/bin:/opt/local/bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/opt/local/bin:/opt/local/sbin:/opt/scalix:/bin/opt/local/bin:/opt/local/sbin:/usr/X11R6/bin:/sbin:/usr/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -82,6 +82,8 @@ export PATH="/Users/cmeid/perl5/perlbrew/bin:/opt/local/bin:/usr/local/homebrew/
 #{{{ custom agari bindings
 
 setopt complete_aliases
+
+alias -g firewall='clear; sudo /usr/sbin/tcpdump -vlnettti pflog0|grep -A1 "block out"'
 
 alias -g galileo='ssh -C -f -T -N -o "ExitOnForwardFailure yes" -L 15432:db-prod-galileo-00:5432 gate-01.paul.sf.agari.com && /usr/local/bin/psql -h localhost -p 15432 -U cmeid galileo'
 #alias -g galileo_secondary='ssh -C -f -T -N -o "ExitOnForwardFailure yes" -L 25432:db-prod-galileo-01:5432 gate-01.paul.sf.agari.com && /opt/local/bin/psql -h localhost -p 25432 -U cmeid galileo'
@@ -127,3 +129,8 @@ function fixurl(){
 
 # }}}
 
+
+PERL_MB_OPT="--install_base \"/Users/cmeid/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/cmeid/perl5"; export PERL_MM_OPT;
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
